@@ -31,5 +31,17 @@
                 <span class="font-medium">{{ session('success') }}</span>
             </div>
         </div>
+        @if (!empty($embedCode))
+            <div class="max-w-xl mx-auto my-10">
+                <div class="my-10">
+                    <label for="script_tag" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Script Tag:</label>
+                    <textarea id="script_tag" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly>{{ $embedCode['script_tag'] }}</textarea>
+                </div>
+                <div class="my-10">
+                    <label for="html_container" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">HTML Container:</label>
+                    <textarea id="html_container" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly>{{ $embedCode['html_container'] }}</textarea>
+                </div>
+            </div>
+        @endif
     @endif
 </div>

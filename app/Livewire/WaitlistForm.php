@@ -12,6 +12,7 @@ class WaitlistForm extends Component
     public $submit_text;
     public $submit_color;
     public $success_message;
+    public $embedCode;
 
     /*protected $rules = [
         'name' => 'required|string|max:255',
@@ -20,7 +21,10 @@ class WaitlistForm extends Component
         'success_message' => 'nullable|string',
     ];*/
 
-    public function save()
+    /**
+     * @return void
+     */
+    public function save(): void
     {
         $this->validate([
             'name' => 'required|string|max:255',
@@ -35,15 +39,17 @@ class WaitlistForm extends Component
         ]
         );
 
-        Waitlist::create([
+        $waitlist = Waitlist::create([
             'name' => $this->name,
             'submit_text' => $this->submit_text,
             'submit_color' => $this->submit_color,
             'success_message' => $this->success_message,
         ]);
 
+        $this->embedCode = $this->getEmbedCode($waitlist->id);
+
         session()->flash('success', "Waitlist {$this->name} створено успішно!");
-        $this->reset();
+        $this->reset(['name', 'submit_text', 'submit_color', 'success_message']);
     }
 
     /**
@@ -52,5 +58,22 @@ class WaitlistForm extends Component
     public function render(): View
     {
         return view('livewire.waitlist-form');
+    }
+
+    /**
+     * @param $waitlistId
+     * @return string[]
+     */
+    public function getEmbedCode($waitlistId): array
+    {
+        $waitlist = Waitlist::findOrFail($waitlistId);
+
+        $scriptTag = '<script src="' . route('waitlist.embed', ['uuid' => $waitlist->uuid]) . '"></script>';
+        $htmlContainer = '<div id="waitlist-container-' . $waitlist->uuid . '"></div>';
+
+        return [
+            'script_tag' => $scriptTag,
+            'html_container' => $htmlContainer,
+        ];
     }
 }
