@@ -22,4 +22,13 @@ class WaitlistService
     {
         return Waitlist::withCount('subscribers')->get();
     }
+
+    /**
+     * @param $id
+     * @return void
+     */
+    public function deleteWaitlist($id): void
+    {
+        $id->delete();
+    }
 }
