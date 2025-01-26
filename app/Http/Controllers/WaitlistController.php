@@ -22,7 +22,7 @@ class WaitlistController extends Controller
      */
     public function index(): View
     {
-        $waitlists = $this->_waitlistService->getCountSubscribers();
+        $waitlists = $this->_waitlistService->getAllWaitlist();
 
         return view('waitlists.index', compact('waitlists'));
     }

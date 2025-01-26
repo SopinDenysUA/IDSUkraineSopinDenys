@@ -7,20 +7,19 @@ use App\Models\Waitlist;
 class WaitlistService
 {
     /**
+     * @return mixed
+     */
+    public function getAllWaitlist(): mixed
+    {
+        return Waitlist::where('user_id', auth()->id())->withCount('subscribers')->get();
+    }
+    /**
      * @param $uuid
      * @return mixed
      */
     public function getWaitlist($uuid): mixed
     {
         return Waitlist::where('uuid', $uuid)->firstOrFail();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCountSubscribers(): mixed
-    {
-        return Waitlist::withCount('subscribers')->get();
     }
 
     /**

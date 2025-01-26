@@ -2,17 +2,20 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class Waitlist extends Model
 {
+    use HasFactory;
     /**
      * @var string[]
      */
     protected $fillable = [
         'name',
+        'user_id',
         'submit_text',
         'submit_color',
         'success_message',

@@ -4,8 +4,13 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 </p>
 
-### Установка зависимостей
->npm install && npm run devAbout Laravel
+### 1. Установка зависимостей
+>npm install && npm run
+### 2. Запустите миграции
+>php artisan migrate
+### 3. Выполните регистрацию
+### 4. Запустите сиды
+>php artisan db:seed
 
 
 
@@ -15,4 +20,4 @@
 
 ### Пояснение выполнения задачи:
 
-- Використав Laravel Breeze з Livewire (Volt Class API) with Alpine 
+- Використав Laravel Breeze з Livewire (Volt Class API) with Alpine

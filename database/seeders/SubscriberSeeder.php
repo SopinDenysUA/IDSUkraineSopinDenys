@@ -2,18 +2,16 @@
 
 namespace Database\Seeders;
 
+use App\Models\Subscriber;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class SubscriberSeeder extends Seeder
 {
     /**
      * @return void
      */
     public function run(): void
     {
-        $this->call([
-            WaitlistSeeder::class,
-            SubscriberSeeder::class
-        ]);
+        Subscriber::factory()->count(30)->create();
     }
 }

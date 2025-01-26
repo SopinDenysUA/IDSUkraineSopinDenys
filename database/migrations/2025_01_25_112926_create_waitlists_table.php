@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('waitlists', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('submit_text');
             $table->string('submit_color');

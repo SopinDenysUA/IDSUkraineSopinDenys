@@ -35,6 +35,7 @@ class WaitlistForm extends Component
 
         $waitlist = Waitlist::create([
             'name' => $this->name,
+            'user_id' => auth()->id(),
             'submit_text' => $this->submit_text,
             'submit_color' => $this->submit_color,
             'success_message' => $this->success_message,
