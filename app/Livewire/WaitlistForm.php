@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Illuminate\Contracts\View\View;
 use App\Models\Waitlist;
@@ -13,13 +14,6 @@ class WaitlistForm extends Component
     public $submit_color;
     public $success_message;
     public $embedCode;
-
-    /*protected $rules = [
-        'name' => 'required|string|max:255',
-        'submit_text' => 'required|string|max:255',
-        'submit_color' => 'required|string',
-        'success_message' => 'nullable|string',
-    ];*/
 
     /**
      * @return void
@@ -44,6 +38,8 @@ class WaitlistForm extends Component
             'submit_text' => $this->submit_text,
             'submit_color' => $this->submit_color,
             'success_message' => $this->success_message,
+            'shareable_link' => Str::uuid()->toString(),
+            'is_shareable' => false,
         ]);
 
         $this->embedCode = $this->getEmbedCode($waitlist->id);

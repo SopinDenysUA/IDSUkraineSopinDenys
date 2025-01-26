@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\WaitlistController;
 use App\Http\Controllers\WaitlistEmbedController;
+use App\Http\Controllers\Waitlist\WaitlistPublicController;
 /*use App\Livewire\WaitlistAdmin;*/
 use App\Livewire\WaitlistForm;
 use Illuminate\Support\Facades\Route;
@@ -24,5 +25,8 @@ Route::get('/waitlist/create', WaitlistForm::class)->name('waitlist.create')->mi
 Route::get('/waitlist/embed/{uuid}', [WaitlistEmbedController::class, 'embed'])->name('waitlist.embed')->middleware(['auth']);
 
 Route::middleware('auth')->group(function () {
+    Route::post('/waitlists/{waitlist}/toggle-access', [WaitlistController::class, 'toggleAccess'])->name('waitlists.toggle-access');
     Route::resource('waitlists', WaitlistController::class);
 });
+
+Route::get('/waitlist/{link}', [WaitlistPublicController::class, 'show'])->name('waitlist.public');

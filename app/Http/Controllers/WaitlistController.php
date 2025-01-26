@@ -72,6 +72,18 @@ class WaitlistController extends Controller
     {
         $this->_waitlistService->deleteWaitlist($waitlist);
 
-        return redirect()->route('waitlists.index')->with('success', "Waitlist {$waitlist->name} успішно видалено");
+        return redirect()->back()->with('success', "Waitlist {$waitlist->name} успішно видалено");
+    }
+
+    /**
+     * @param Waitlist $waitlist
+     * @return RedirectResponse
+     */
+    public function toggleAccess(Waitlist $waitlist): RedirectResponse
+    {
+        $waitlist->is_shareable = !$waitlist->is_shareable;
+        $waitlist->save();
+
+        return redirect()->back()->with('success', "Доступ до waitlist {$waitlist->name} успішно змінено");
     }
 }

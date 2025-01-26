@@ -16,6 +16,8 @@ class Waitlist extends Model
         'submit_text',
         'submit_color',
         'success_message',
+        'shareable_link',
+        'is_shareable'
     ];
 
     /**

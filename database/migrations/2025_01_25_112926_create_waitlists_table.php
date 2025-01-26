@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('submit_text');
             $table->string('submit_color');
             $table->text('success_message')->nullable();
+            $table->string('shareable_link')->nullable()->unique();
+            $table->boolean('is_shareable')->default(false);
             $table->timestamps();
         });
     }
