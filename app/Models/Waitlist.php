@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class Waitlist extends Model
@@ -16,6 +17,14 @@ class Waitlist extends Model
         'submit_color',
         'success_message',
     ];
+
+    /**
+     * @return HasMany
+     */
+    public function subscribers(): HasMany
+    {
+        return $this->hasMany(Subscriber::class);
+    }
 
     /**
      * @return void

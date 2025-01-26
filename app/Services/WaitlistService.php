@@ -14,4 +14,12 @@ class WaitlistService
     {
         return Waitlist::where('uuid', $uuid)->firstOrFail();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCountSubscribers(): mixed
+    {
+        return Waitlist::withCount('subscribers')->get();
+    }
 }
