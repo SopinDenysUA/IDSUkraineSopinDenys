@@ -30,6 +30,7 @@
                     <td class="py-2 px-4 border-b">{{ $waitlist->created_at->format('d.m.Y') }}</td>
                     <td class="py-2 px-4 border-b">{{ $waitlist->subscribers_count }}</td>
                     <td class="py-2 px-4 border-b">
+                        <a href="{{ route('waitlists.show', $waitlist->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-2 rounded">Переглянути</a>
                         <form action="{{ route('waitlists.toggle-access', $waitlist->id) }}" method="POST" style="display:inline;">
                             @csrf
                             <button
@@ -38,13 +39,7 @@
                                 {{ $waitlist->is_shareable ? 'Відключити доступ' : 'Включити доступ' }}
                             </button>
                         </form>
-                        <a href="{{ route('waitlists.show', $waitlist->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Переглянути</a>
-                        <form action="{{ route('waitlists.destroy', $waitlist->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Видалити</button>
-                        </form>
-                        <button onclick="copyToClipboard('{{ route('waitlist.public', $waitlist->shareable_link) }}')" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                        <button onclick="copyToClipboard('{{ route('waitlist.public', $waitlist->shareable_link) }}')" class="bg-gray-500 hover:bg-gray-700 text-white py-2 px-2 rounded">
                             Поділитися
                         </button>
                     </td>

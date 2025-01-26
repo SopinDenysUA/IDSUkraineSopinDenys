@@ -22,6 +22,16 @@ class WaitlistService
         return Waitlist::where('uuid', $uuid)->firstOrFail();
     }
 
+    public function updateWaitlist($data, $waitlist)
+    {
+        return $waitlist->update([
+            'name' => $data['name'],
+            'submit_text' => $data['submit_text'],
+            'submit_color' => $data['submit_color'],
+            'success_message' => $data['success_message'],
+        ]);
+    }
+
     /**
      * @param $id
      * @return void

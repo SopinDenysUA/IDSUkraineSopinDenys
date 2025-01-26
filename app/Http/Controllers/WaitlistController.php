@@ -54,14 +54,39 @@ class WaitlistController extends Controller
         return view('waitlists.show', compact('waitlist', 'subscribers'));
     }
 
-    public function edit(string $id)
+    /**
+     * @param Waitlist $waitlist
+     * @return View
+     */
+    public function edit(Waitlist $waitlist): View
     {
-        //
+        return view('waitlists.edit', compact('waitlist'));
     }
 
-    public function update(Request $request, string $id)
+    /**
+     * @param Request $request
+     * @param Waitlist $waitlist
+     * @return RedirectResponse
+     */
+    public function update(Request $request, Waitlist $waitlist): RedirectResponse
     {
-        //
+        $request->validate(
+            [
+            'name' => 'required|string|max:255',
+            'submit_text' => 'required|string|max:255',
+            'submit_color' => 'required|string',
+            'success_message' => 'nullable|string',
+            ],
+            [
+                'name.required' => 'Поле "Назва Waitlist’а" обов`язкове для заповнення',
+                'submit_text.required' => 'Поле "Текст кнопки submit" обов`язкове для заповнення',
+                'submit_color.required' => 'Виберіть колір в полі "Колір кнопки submit"',
+            ]
+        );
+
+        $this->_waitlistService->updateWaitlist($request, $waitlist);
+
+        return redirect()->back()->with('success', "Waitlist {$request->name} успішно оновлено");
     }
 
     /**

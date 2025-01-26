@@ -68,6 +68,11 @@ class WaitlistForm extends Component
         $scriptTag = '<script src="' . route('waitlist.embed', ['uuid' => $waitlist->uuid]) . '"></script>';
         $htmlContainer = '<div id="waitlist-container-' . $waitlist->uuid . '"></div>';
 
+        $waitlist->update([
+            'script_tag' => $scriptTag,
+            'html_container' => $htmlContainer,
+        ]);
+
         return [
             'script_tag' => $scriptTag,
             'html_container' => $htmlContainer,
